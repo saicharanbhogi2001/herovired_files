@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <title>About</title>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>My Details</h1>
+        </div>
+        <div class="mainsub">
+            <table>
+                <tr>
+                    <td>NAME</td>
+                    <td><p id="name"></p></td>
+                </tr>
+                <tr>
+                    <td>date of birth</td>
+                    <td><p id="dob"></p></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><p id="address"></p></td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><p id="contact"></p></td>
+                </tr>
+                <tr>
+                    <td>Father name</td>
+                    <td><p id="fname"></p></td>
+                </tr>
+                <tr>
+                    <td>Mother Name</td>
+                    <td><p id="mname"></p></td>
+                </tr>
+                <tr>
+                    <td>Religion</td>
+                    <td><p id="religion"></p></td>
+                </tr>
+                <tr>
+                    <td>Hobbies</td>
+                    <td><p id="hobbies"></p></td>
+                </tr>
+                <tr>
+                    <td>Schooling</td>
+                    <td><p id="school"></p></td>
+                </tr>
+                <tr>
+                    <td>Intermediate</td>
+                    <td><p id="inter"></p></td>
+                </tr>
+                <tr>
+                    <td>Engineering</td>
+                    <td><p id="engg"></p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        function reqListener() {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            document.getElementById("name").innerHTML=data.Name;
+            document.getElementById("dob").innerHTML=data.DateofBirth;
+            document.getElementById("address").innerHTML=data.Address;
+            document.getElementById("contact").innerHTML=data.Contact;
+            document.getElementById("fname").innerHTML=data.FatherName;
+            document.getElementById("mname").innerHTML=data.MotherName;
+            document.getElementById("religion").innerHTML=data.Religion;
+            document.getElementById("hobbies").innerHTML=data.Hobbies;
+            document.getElementById("school").innerHTML=data.Schooling;
+            document.getElementById("inter").innerHTML=data.Intermediate;
+            document.getElementById("engg").innerHTML=data.Engineering;
+        }
+
+        function reqError(err) {
+        console.log('Fetch Error :-S', err);
+        }
+
+        var oReq = new XMLHttpRequest();
+        oReq.onload = reqListener;
+        oReq.onerror = reqError;
+        oReq.open('get', '/getdata', true);
+        oReq.send();
+    </script>
+</body>
+</html>
